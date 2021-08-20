@@ -7,4 +7,4 @@ class Provider:
     def search(self, query: str):
         pass
 
-    
+        

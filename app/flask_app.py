@@ -22,5 +22,7 @@ def info():
 def search():
     plugin = request.args.get('plugin')
     query = request.args.get('query')
-    return 'test'
-
+    for provider in providers:
+        if plugin in provider.name:
+            return {'response': 200, 'result': provider.search(query=query)}
+    return {'response': 404}
