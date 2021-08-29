@@ -3,10 +3,11 @@ from flask import request
 from flask import jsonify
 from providers.test_provider import Test_Provider
 from providers.youtube import YoutubeProvider
+from providers.nicovideo import NicoProvider
 import json
 
 app = Flask(__name__)
-providers = (Test_Provider(), YoutubeProvider())
+providers = (Test_Provider(), YoutubeProvider(), NicoProvider())
 
 @app.route('/')
 def root():
