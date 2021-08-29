@@ -2,10 +2,11 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from providers.test_provider import Test_Provider
+from providers.youtube import YoutubeProvider
 import json
 
 app = Flask(__name__)
-providers = (Test_Provider(),)
+providers = (Test_Provider(), YoutubeProvider())
 
 @app.route('/')
 def root():
@@ -20,9 +21,9 @@ def info():
 
 @app.route('/search')
 def search():
-    plugin = request.args.get('plugin')
+    provider = request.args.get('provider')
     query = request.args.get('query')
-    for provider in providers:
-        if plugin in provider.name:
-            return {'response': 200, 'result': provider.search(query=query)}
+    for p in providers:
+        if provider in p.name:
+            return {'response': 200, 'result': p.search(query=query)}
     return {'response': 404}
