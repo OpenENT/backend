@@ -7,7 +7,7 @@ from providers.nicovideo import NicoProvider
 import json
 
 app = Flask(__name__)
-providers = (Test_Provider(), YoutubeProvider(), NicoProvider())
+providers = (YoutubeProvider(), NicoProvider())
 
 @app.route('/')
 def root():
