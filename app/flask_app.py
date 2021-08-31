@@ -1,9 +1,7 @@
-from flask import Flask
-from flask import request
-from flask import jsonify
-from flask import send_from_directory
+from flask import Flask, send_from_directory, request, jsonify
 from providers.youtube import YoutubeProvider
 from providers.nicovideo import NicoProvider
+
 import json
 
 app = Flask(__name__, static_url_path='')
