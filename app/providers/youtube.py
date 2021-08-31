@@ -1,6 +1,6 @@
 from youtubesearchpython import VideosSearch
 from provider import Provider
-
+import subprocess
 import structs
 
 class YoutubeProvider(Provider):
@@ -21,4 +21,10 @@ class YoutubeProvider(Provider):
                     artist=structs.Artist(name=videosSearch.result()["result"][i]["channel"]["name"]))))
         return res
 
+    def download(self, stream_url: str):
+        id = stream_url[31:]
+        command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f bestaudio {stream_url}"
+        process = subprocess.Popen(command, shell=True)
+        process.wait()
+        return f'{id}.m4a'
         
