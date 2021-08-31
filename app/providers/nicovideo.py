@@ -1,5 +1,6 @@
 from provider import Provider
 
+import subprocess
 import requests
 import structs
 import json
@@ -28,4 +29,9 @@ class NicoProvider(Provider):
             res.append(song)
         return res
 
-        
+    def download(self, stream_url: str):
+        id = stream_url[31:]
+        command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f h264_300kbps_360p-aac_64kbps {stream_url}"
+        process = subprocess.Popen(command, shell=True)
+        process.wait()
+        return f'{id}.m4a'
