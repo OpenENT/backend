@@ -26,5 +26,5 @@ class YoutubeProvider(Provider):
         command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f bestaudio {stream_url}"
         process = subprocess.Popen(command, shell=True)
         process.wait()
-        return f'{id}.m4a'
+        return f'{id}.opus'
         
