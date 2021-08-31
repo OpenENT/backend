@@ -1,3 +1,4 @@
 #!/bin/sh
-export FLASK_APP=app/flask_app.py
+cd app
+export FLASK_APP=flask_app.py
 flask run -p 5001
