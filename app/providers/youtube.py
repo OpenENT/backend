@@ -1,4 +1,4 @@
-from youtubesearchpython import *
+from youtubesearchpython import VideosSearch
 from provider import Provider
 
 import structs
