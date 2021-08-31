@@ -25,7 +25,7 @@ class NicoProvider(Provider):
             thumbnail = content["data"][i]["thumbnailUrl"]
             artist = structs.Artist()
             album = structs.Album(title=title)
-            song = structs.Song("https://nicovideo.com/watch/"+id, title=title, album=album)
+            song = structs.Song("https://nicovideo.com/watch/"+id, provider="Nicovideo", title=title, album=album)
             res.append(song)
         return res
 
