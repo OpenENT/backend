@@ -25,12 +25,12 @@ class NicoProvider(Provider):
             thumbnail = content["data"][i]["thumbnailUrl"]
             artist = structs.Artist()
             album = structs.Album(title=title)
-            song = structs.Song("https://nicovideo.com/watch/"+id, provider="Nicovideo", title=title, album=album)
+            song = structs.Song("https://nicovideo.jp/watch/"+id, provider="Nicovideo", title=title, album=album)
             res.append(song)
         return res
 
     def download(self, stream_url: str):
-        id = stream_url[31:]
+        id = stream_url[30:]
         command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f h264_300kbps_360p-aac_64kbps {stream_url}"
         process = subprocess.Popen(command, shell=True)
         process.wait()
