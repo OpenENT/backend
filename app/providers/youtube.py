@@ -14,7 +14,7 @@ class YoutubeProvider(Provider):
         for i in range(videosSearch.limit): # kinda shitty
             res.append(structs.Song(
                 videosSearch.result()["result"][i]["link"], 
-                provider="YouTube",
+                provider=self.name,
                 title=videosSearch.result()["result"][i]["title"],
                 album=structs.Album(
                     img_url=videosSearch.result()["result"][i]["thumbnails"][0]["url"],
