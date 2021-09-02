@@ -36,7 +36,7 @@ def download():
             url = p.download(stream_url)
             if url is None:
                 return {'response': 500}
-            return {'response': 200, 'url': f"http://127.0.0.1:5001/streams/{url}"}
+            return {'response': 200, 'stream_url': f"http://127.0.0.1:5001/streams/{url}"}
     return {'response': 404}
 
 @app.route('/streams/<path:path>')
