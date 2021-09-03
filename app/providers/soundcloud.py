@@ -24,3 +24,11 @@ class SoundcloudProvider(Provider):
         for i in range(len(link_list[:10])):
             res.append(structs.Song(link_list[i], provider="Soundcloud", title=title_list[i], album="WIP"))
         return res
+    
+    def download(self, stream_url: str):
+        id = stream_url[23:]
+        id = id.replace('/', '-')
+        command = f"yt-dlp --output streams/{id}.%\(ext\)s -f hls_opus_64 {stream_url}"
+        process = subprocess.Popen(command, shell=True)
+        process.wait()
+        return f'{id}.opus'
