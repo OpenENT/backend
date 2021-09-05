@@ -19,11 +19,14 @@ class SoundcloudProvider(Provider):
         title_list = list()
         query = query.replace(' ', '-')
         query = query.replace("'", "")
-        for data in soup.select(f'a[href*={query.lower()}]'):
-            link_list.append(''.join([HOST, data['href']]))
-            title_list.append(data.text)
-        for i in range(len(link_list[:10])):
-            res.append(structs.Song(link_list[i], provider="Soundcloud", title=title_list[i], album="WIP"))
+        try:
+            for data in soup.select(f'a[href*={query.lower()}]'):
+                link_list.append(''.join([HOST, data['href']]))
+                title_list.append(data.text)
+            for i in range(len(link_list[:10])):
+                res.append(structs.Song(link_list[i], provider="Soundcloud", title=title_list[i], album="WIP"))
+        except:
+            pass
         return res
     
     def download(self, stream_url: str):
