@@ -23,7 +23,7 @@ class YoutubeProvider(Provider):
 
     def download(self, stream_url: str):
         id = stream_url[31:]
-        command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f bestaudio {stream_url}"
+        command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f bestaudio --embed-metadata --embed-thumbnail {stream_url}"
         process = subprocess.Popen(command, shell=True)
         process.wait()
         return f'{id}.opus'

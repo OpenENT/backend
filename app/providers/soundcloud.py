@@ -32,7 +32,7 @@ class SoundcloudProvider(Provider):
     def download(self, stream_url: str):
         id = stream_url[23:]
         id = id.replace('/', '-')
-        command = f"yt-dlp --output streams/{id}.%\(ext\)s -f hls_opus_64 {stream_url}"
+        command = f"yt-dlp --output streams/{id}.%\(ext\)s -f hls_opus_64 --embed-metadata --embed-thumbnail {stream_url}"
         process = subprocess.Popen(command, shell=True)
         process.wait()
         return f'{id}.opus'
