@@ -18,6 +18,7 @@ class SoundcloudProvider(Provider):
         link_list = list()
         title_list = list()
         query = query.replace(' ', '-')
+        query = query.replace("'", "")
         for data in soup.select(f'a[href*={query.lower()}]'):
             link_list.append(''.join([HOST, data['href']]))
             title_list.append(data.text)
