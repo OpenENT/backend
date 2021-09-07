@@ -24,7 +24,7 @@ class SoundcloudProvider(Provider):
                 link_list.append(''.join([HOST, data['href']]))
                 title_list.append(data.text)
             for i in range(len(link_list[:10])):
-                res.append(structs.Song(link_list[i], provider="Soundcloud", title=title_list[i], album="WIP"))
+                res.append(structs.Song(link_list[i], provider=self.name, title=title_list[i], album="WIP"))
         except:
             pass
         return res
