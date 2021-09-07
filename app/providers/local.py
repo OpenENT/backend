@@ -13,7 +13,7 @@ class LocalProvider(Provider):
         formats = (".flac", ".mp3", ".m4a", ".aac", ".ape", ".wav", ".aiff", ".opus", ".mpc", ".ogg", ".wma")
         path = Path('PATH TO INSERT')
         res = list()
-        for file in path.rglob(f"*.*"):
+        for file in path.rglob("*.*"):
             if re.search(query, file.name, re.IGNORECASE):
                 if str(file).endswith(formats):
                     metadata = mutagen.File(file)
