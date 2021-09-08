@@ -4,6 +4,7 @@ class Settings:
 
     def __init__(self, path):
         self.path = path
+        self.local_provider_path = './music'
         try:
             with open(self.path) as f:
                 self.__dict__.update(json.load(f))

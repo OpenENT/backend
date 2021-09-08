@@ -4,10 +4,12 @@ from providers.soundcloud import SoundcloudProvider
 from providers.youtube import YoutubeProvider
 from providers.nicovideo import NicoProvider
 from providers.local import LocalProvider
+from settings import Settings
 
 import json
 
 app = Flask(__name__, static_url_path='')
+settings = Settings('backend.json')
 providers = (SoundcloudProvider(), YoutubeProvider(), LocalProvider(), NicoProvider())
 
 @app.route('/')

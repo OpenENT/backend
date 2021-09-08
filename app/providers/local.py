@@ -1,6 +1,7 @@
 from provider import Provider
 from pathlib import Path
 
+import flask_app
 import mutagen
 import structs
 import re
@@ -12,7 +13,8 @@ class LocalProvider(Provider):
     
     def search(self, query: str):
         formats = (".flac", ".mp3", ".m4a", ".aac", ".ape", ".wav", ".aiff", ".opus", ".mpc", ".ogg", ".wma")
-        path = Path('PATH TO INSERT')
+        path = Path(flask_app.settings.local_provider_path)
+        path.mkdir(parents=True, exist_ok=True)
         res = list()
         for file in path.rglob("*.*"):
             if re.search(query, file.name, re.IGNORECASE):
