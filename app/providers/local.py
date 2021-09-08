@@ -1,11 +1,12 @@
 from provider import Provider
-import structs
-
 from pathlib import Path
-import re
+
 import mutagen
+import structs
+import re
 
 class LocalProvider(Provider):
+
     def __init__(self):
         super().__init__(name='Local')
     

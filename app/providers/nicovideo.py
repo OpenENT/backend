@@ -12,8 +12,7 @@ class NicoProvider(Provider):
     def __init__(self):
         super().__init__(name="Nicovideo")
 
-
-    def search(self, query: str): # TODO: download etc
+    def search(self, query: str):
         res = list()
         req = requests.get(f"{HOST}?q={query}&targets=title,tags&fields=contentId,title,tags,thumbnailUrl&_sort=-viewCounter&_offset=0&_limit=10&_context=niconico")
         content = json.loads(req.content)

@@ -1,5 +1,6 @@
-from bs4 import BeautifulSoup
 from provider import Provider
+from bs4 import BeautifulSoup
+
 import structs
 import subprocess
 import requests
@@ -7,6 +8,7 @@ import requests
 HOST = "https://soundcloud.com"
 
 class SoundcloudProvider(Provider):
+    
     def __init__(self):
         super().__init__(name='Soundcloud')
     

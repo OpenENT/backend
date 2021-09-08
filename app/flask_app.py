@@ -1,13 +1,14 @@
 from flask import Flask, send_from_directory, request, jsonify
+
+from providers.soundcloud import SoundcloudProvider
 from providers.youtube import YoutubeProvider
 from providers.nicovideo import NicoProvider
-from providers.soundcloud import SoundcloudProvider
 from providers.local import LocalProvider
 
 import json
 
 app = Flask(__name__, static_url_path='')
-providers = (YoutubeProvider(), NicoProvider(), SoundcloudProvider(), LocalProvider())
+providers = (SoundcloudProvider(), YoutubeProvider(), LocalProvider(), NicoProvider())
 
 @app.route('/')
 def root():

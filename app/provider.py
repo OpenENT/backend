@@ -9,5 +9,3 @@ class Provider:
 
     def download(self, stream_url: str):
         pass
-
-        
