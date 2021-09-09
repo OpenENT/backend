@@ -3,8 +3,8 @@ from pathlib import Path
 
 import flask_app
 import mutagen
-import structs
 import re
+import structs
 
 class LocalProvider(Provider):
 
@@ -20,5 +20,8 @@ class LocalProvider(Provider):
             if re.search(query, file.name, re.IGNORECASE):
                 if str(file).endswith(formats):
                     metadata = mutagen.File(file)
-                    res.append(structs.Song(str(file), provider=self.name, title=metadata['title'][0], album=metadata['album'][0]))
+                    if 'title' and 'album' not in metadata:
+                        res.append(structs.Song(str(file), provider=self.name, title=str(file)[:-4], album='Unknown'))
+                    else:
+                        res.append(structs.Song(str(file), provider=self.name, title=metadata['title'][0], album=metadata['album'][0]))
         return res
