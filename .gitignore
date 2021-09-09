@@ -6,9 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# Streams folder
-app/streams/
-
 # Distribution / packaging
 .Python
 build/
@@ -132,4 +129,5 @@ dmypy.json
 .pyre/
 
 backend.json
+app/streams/
 music/
