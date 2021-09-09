@@ -1,7 +1,8 @@
-from youtubesearchpython import VideosSearch
+from pathlib import Path
 from provider import Provider
-import subprocess
+from youtubesearchpython import VideosSearch
 import structs
+import subprocess
 
 class YoutubeProvider(Provider):
 
@@ -23,8 +24,12 @@ class YoutubeProvider(Provider):
 
     def download(self, stream_url: str):
         id = stream_url[31:]
-        command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f bestaudio --embed-metadata --embed-thumbnail {stream_url}"
-        process = subprocess.Popen(command, shell=True)
-        process.wait()
-        return f'{id}.opus'
+        file_path = Path(f'streams/{id}.opus')
+        if file_path.is_file():
+            return f'{id}.opus'
+        else:
+            command = f"yt-dlp --output streams/{id}.%\(ext\)s -x -f bestaudio --embed-metadata --embed-thumbnail {stream_url}"
+            process = subprocess.Popen(command, shell=True)
+            process.wait()
+            return f'{id}.opus'
         

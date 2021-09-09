@@ -1,9 +1,10 @@
+from pathlib import Path
 from provider import Provider
 
-import subprocess
+import json
 import requests
 import structs
-import json
+import subprocess
 
 HOST = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
 
@@ -30,7 +31,11 @@ class NicoProvider(Provider):
 
     def download(self, stream_url: str):
         id = stream_url[30:]
-        command = f"yt-dlp --output streams/{id}.%\(ext\)s -x --embed-metadata --embed-thumbnail {stream_url}"
-        process = subprocess.Popen(command, shell=True)
-        process.wait()
-        return f'{id}.m4a'
+        file_path = Path(f'streams/{id}.m4a')
+        if file_path.is_file():
+            return f'{id}.m4a'
+        else:
+            command = f"yt-dlp --output streams/{id}.%\(ext\)s -x --embed-metadata --embed-thumbnail {stream_url}"
+            process = subprocess.Popen(command, shell=True)
+            process.wait()
+            return f'{id}.m4a'
