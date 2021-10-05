@@ -1,10 +1,10 @@
-from bs4 import BeautifulSoup
-from pathlib import Path
 from provider import Provider
+from pathlib import Path
+from bs4 import BeautifulSoup
 
+import subprocess
 import requests
 import structs
-import subprocess
 
 HOST = "https://soundcloud.com"
 
